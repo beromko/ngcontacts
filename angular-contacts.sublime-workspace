@@ -1,0 +1,1646 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"fo",
+				"form	Tag"
+			],
+			[
+				"dia",
+				"diagnostic"
+			],
+			[
+				"box-",
+				"box-sizing: "
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"bre",
+				"break-word"
+			],
+			[
+				"whi",
+				"white-space: "
+			],
+			[
+				"ligh",
+				"lighten	Sass-function"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"c",
+				"click"
+			],
+			[
+				"i",
+				"iselse"
+			],
+			[
+				"d",
+				"disc"
+			],
+			[
+				"par",
+				"parseInt"
+			],
+			[
+				"s",
+				"script"
+			],
+			[
+				"check",
+				"checkbox"
+			],
+			[
+				"product_",
+				"product_description"
+			],
+			[
+				"address",
+				"addresssection"
+			],
+			[
+				"margin",
+				"margin-bottom: "
+			],
+			[
+				"iline",
+				"inline-block"
+			],
+			[
+				"is",
+				"isif"
+			],
+			[
+				"border-",
+				"border-box"
+			],
+			[
+				"line",
+				"line-through"
+			],
+			[
+				"n",
+				"normal"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"display",
+				"display: "
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "public/index.html",
+			"settings":
+			{
+				"buffer_size": 1680,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/lib/angular/angular.js",
+			"settings":
+			{
+				"buffer_size": 1091891,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/src/factories.js",
+			"settings":
+			{
+				"buffer_size": 166,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/src/app.js",
+			"settings":
+			{
+				"buffer_size": 426,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 252,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "api.js",
+			"settings":
+			{
+				"buffer_size": 1142,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "angular.module(\"ContactsApp\")\n	.controller(\"ListController\", function ($scope, Contact, $location){\n		$scope.contacts = Contact.query();\n		$scope.fields = [\"firstName\",\"lastName\",\"homePhone\",\"email\"];\n\n		$scope.sort = function (field){\n			$scope.sort.field = field;\n			$scope.sort.order = !$scope.sort.order;\n		}\n\n		$scope.sort.field = \"firstName\";\n		$scope.sort.order = false;\n\n		$scope.show = function(id) {\n			$location.url('/contact/' + id);\n		}\n\n	}).\n	.controller('NewController', function ($scope, $rootScope, Contact, $location) {\n        $rootScope.PAGE = \"new\";\n        $scope.contact = new Contact({\n            firstName: ['', 'text'],\n            lastName:  ['', 'text'],\n            email:     ['', 'email'],\n            homePhone: ['', 'tel'],\n            cellPhone: ['', 'tel'],\n            birthday:  ['', 'date'],\n            website:   ['', 'url'],\n            address:   ['', 'text']\n        });\n\n        $scope.save = function () {\n            if ($scope.newContact.$invalid) {\n                $scope.$broadcast('record:invalid');\n            } else {\n                $scope.contact.$save();\n                $location.url('/contacts');\n            }\n        };\n    }).controller(\"StartUpController\", ['$scope', function ($scope) {\n		$scope.funding = { startingEstimate: 0, endingEstimate: 0, needed: 'MILLION' };\n\n		computeNeeded = function() {\n			$scope.funding.needed = +$scope.funding.startingEstimate + +$scope.funding.endingEstimate ;\n\n			$scope.funding.needed = $scope.funding.needed ? $scope.funding.needed : \"MILLION\";\n		};\n		$scope.reset = function() {\n			$scope.funding.startingEstimate = 0;\n			$scope.funding.endingEstimate = 0;\n		}\n		$scope.$watchGroup(['funding.startingEstimate','funding.endingEstimate'], computeNeeded);\n	}]).controller(\"testmy\", ['$scope', function ($scope) {\n		\n		$scope.$watch('comeon', function() {\n			$scope.comeonvalue = $scope.comeon;\n		});\n	}]).controller(\"students\", function($scope){\n		var students = [{name:'Mary Contrary', id:'1'},\n		{name:'Jack Sprat', id:'2'},\n		{name:'Jill Hill', id:'3'}];\n		$scope.students = students;\n	}).filter('formatTplVal', function() {\n		return function(input) {\n			return  (input || '<em class=\"nana\">n/a</em>');\n		}\n	});\n\n",
+			"file": "public/src/controllers.js",
+			"file_size": 1529,
+			"file_write_time": 131020358455191118,
+			"settings":
+			{
+				"buffer_size": 2216,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/views/list.html",
+			"settings":
+			{
+				"buffer_size": 803,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<h2>New Contact</h2>\n<form name=\"newContact\" novalidate class='form-horizontal'>\n	<form-field record='contact' field='firstName' live='false' required='true'></form-field>\n    <form-field record='contact' field='lastName' live='false' required='true'></form-field>\n    <form-field ng-repeat='(k,v) in contact | keyFilter: \"firstName\" | keyFilter: \"lastName\" ' record='contact' field='{{k}}'></form-field> \n\n    <new-field record='contact' live='false'></new-field>\n\n	<div class='row form-group'>\n		<div class='col-sm-offset-2'>\n            <button class='btn btn-primary' ng-click='save()'> Create Contact </button>\n        </div>\n    </div>\n</form>",
+			"file": "public/views/new.html",
+			"file_size": 279,
+			"file_write_time": 131020369940091394,
+			"settings":
+			{
+				"buffer_size": 649,
+				"line_ending": "Windows",
+				"name": "<h2>New Contact</h2>"
+			}
+		},
+		{
+			"file": "/C/Users/berimor/Desktop/CBOOK/public/views/new.html",
+			"settings":
+			{
+				"buffer_size": 665,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/Users/berimor/Desktop/CBOOK/public/src/controllers.js",
+			"settings":
+			{
+				"buffer_size": 2353,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data.json",
+			"settings":
+			{
+				"buffer_size": 798,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 334.0,
+		"last_filter": "idne",
+		"selected_items":
+		[
+			[
+				"idne",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"inde",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"ind",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"in",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"inden",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"indent",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/berimor/Desktop/contacts",
+		"/C/Users/berimor/Desktop/contacts/public",
+		"/C/Users/berimor/Desktop/contacts/public/src",
+		"/C/Users/berimor/Desktop/contacts/public/views"
+	],
+	"file_history":
+	[
+		"/C/Users/berimor/Desktop/contacts/public/views/list.html",
+		"/D/home/_trek/.htaccess",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/sections/_cart.scss",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/sections/myaccount/_login.scss",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/js/components/global.newsletter.js",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/sections/_search_engine.scss",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/js/app.validator.customconfig.js",
+		"/D/_JOB/OSF/LORA/loreal/ecom-lora/cartridges/app_core/cartridge/templates/default/checkout/components/paymentmethods/payment/creditcard/creditcard.isml",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/sections/checkout/_checkout-order-summary.scss",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/sections/transversal/_static_pages.scss",
+		"/D/_JOB/OSF/Lncome-AU.sublime-project",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/fonts.scss",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/.sass-cache/3a6542c270a150a80cc8d304cc6e76621ee805e7/_static_pages.scssc",
+		"/D/_JOB/OSF/LORA/ecom-lancome-au/cartridges/app_lancome_au/cartridge/static/default/sass/sections/myaccount/_generalstyles.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/_buttons.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/pdp/_pdp.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/settings/_style_guide.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/app.storelocator.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/_headings.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/_product_tile.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/account/_navigation.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/components/global.navigation.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/global/_navigation_responsive.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/webreferences2/SkinPro.wsdl",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/product/components/producttilemaininfo.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/global/_footer.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/global/_footer_responsive.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/header/_topslot.scss",
+		"/D/home/tm/lib/tpl/smallImages.tpl",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/pages/_static_pages.scss",
+		"/D/home/ugkc/adm/adm_func_calendar.php",
+		"/D/home/ugkc/lib/forms.php",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/skindiagnostic/_skindiagnostic.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/scripts/skinprodiagnostic/SkinProDiagnostic.ds",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/resources/_image.properties",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/skinprodiagnostic/skinpromyresults.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/skinprodiagnostic/skinproresultspage.isml",
+		"/C/Users/berimor/Desktop/222",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/skinprodiagnostic/diagnosticprofile.isml",
+		"/D/home/_gi2/js/core.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/components/app.customevents.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/components/global.expertsolutions.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/components/account.navigation.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/app.customeventhandler.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/pages/_special_offers.scss",
+		"/D/home/tm/lib/tpl/readSpecialProject.tpl",
+		"/D/home/tm/lib/specialprojects.php",
+		"/D/home/_trek/testftp1.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/programlist.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/specialProjectsMore.tpl",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/pdp/_pdp_bottomsections.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/global/_navigation.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/opc/_identification.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/emailproducttestingsubmitresults.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/emailupdateprofile.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/orderconfirmation.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/passwordchangedemail.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/product.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/components/product.navigation.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/productlist.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/grid/_filter_search.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/homepage/_homepage.scss",
+		"/D/home/_gi2/lib/tpl/footer.tpl",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/js/components/global.newsletter.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/global/_header.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/components/newsletter/components/subscribeconfirmationform.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/content/contactus.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/pages/_contactus.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/account/wishlist/wishlist.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/account/pt_account.isml",
+		"/D/home/gi/lib/mo_footer.php",
+		"/D/home/_gi2/lib/etc/core.php",
+		"/D/home/_gi2/lib/etc/dbstuff.php",
+		"/D/home/_gi2/lib/etc/stuff.php",
+		"/D/home/_gi2/filesshmiles/links.php",
+		"/D/home/_gi2/lib/tpl/readSlider.tpl",
+		"/D/home/_gi2/lib/custom/linkator.php",
+		"/C/Users/berimor/Downloads/DIS-exmination.xml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/_base.scss",
+		"/D/_JOB/OSF/LORA/_tools/hints.txt",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/account/_payment_methods.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/cart/_cart.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/common/global/_minicart.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/cart/_cart_abandonment.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/product/components/pdpsections/producthowtouse.isml",
+		"/D/home/_vgolos/lib/tpl/ds/homeCenterBlockTop.tpl",
+		"/D/home/_vgolos/lib/tpl/ds/heavenBanner.tpl",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/opc/_shipping-billing.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/opc/_confirmation.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/opc/_payment.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/account/_address_book.scss",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/footer.tpl",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/_linkator.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/footerInformers.tpl",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/.sass-cache/c249493c853a0133b9bdd59ce7f5491c3d675c25/_sprites.scssc",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/emailfooter.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/emailheader.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/emailcreateprofile.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/templates/default/mail/emailbackinstocktemplate.isml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/fonts/fontello/config.json",
+		"/D/home/rixos3/lib/conf.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/workdex.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/core.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/conf.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/conn.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/initstart.php",
+		"/D/home/lactos/lib/conf.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/heaven100.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/pageheader.tpl",
+		"/D/home/_vgolos/lib/tpl/ds/pageheader.tpl",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/chrono.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/stuff.php",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/homeHeaven100.tpl",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/heavenBanner.tpl",
+		"/C/Users/berimor/AppData/Local/Temp/Temp1_eStore-Site.zip/eStore-Site/sites/estore/site.xml",
+		"/C/Users/berimor/AppData/Local/Temp/Temp1_eStore-Site.zip/eStore-Site/sites/estore/redirect-urls.xml",
+		"/C/Users/berimor/Desktop/accident/dermacenter/urls/aliases",
+		"/C/Users/berimor/Desktop/accident/dermacenter/urls/urlmap",
+		"/C/Users/berimor/Desktop/accident/dermacenter/library/library.xml",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/storelocator/_storelocator_results.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/account/_password_recovery.scss",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/pages/_expert_solutions_responsive.scss",
+		"/D/home/rixos3/js/core.js",
+		"/D/_JOB/OSF/LORA/dermacenter/ecom-dermacenter/cartridges/app_dermacenter/cartridge/static/default/sass/sections/account/_personal_info.scss",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/style.css",
+		"/C/Users/berimor/AppData/Local/Temp/fz3temp-1/googlemap.php",
+		"/D/home/rixos3/lib/anketa_properties.php",
+		"/D/home/rixos3/tls/lexmayer_ua.txt"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"*.scss",
+			"*.ds",
+			"*.isml",
+			"*.scss",
+			"*.isml",
+			"*.scss",
+			"*.isml",
+			"*.properties",
+			"*.scss",
+			"*.isml",
+			"*.scss",
+			"*.js",
+			"*.scss",
+			"*.js",
+			"*.scss",
+			"*.isml",
+			"*.scss",
+			"*.php,D:\\home\\_gi2",
+			"*.scss",
+			"*.js",
+			"*.scss",
+			"*.js",
+			"*.ds",
+			"*.isml",
+			"*.properties",
+			"*.scss",
+			"*.php",
+			"*.scss",
+			"*.js",
+			"*.scss",
+			"*.isml",
+			"*.scss",
+			"*.isml",
+			"*.scss",
+			"*.properties",
+			"*.scss",
+			"*.js",
+			"*.scss",
+			".scss",
+			"*.tpl,D:\\home\\_trek\\lib\\custom,D:\\home\\_trek\\lib\\tpl",
+			"*.php,D:\\home\\_trek\\lib\\custom",
+			"*.php",
+			"*.tpl",
+			"*.php",
+			"*.scss"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"recommendation-message",
+			"margin: 10px 0 15px;",
+			"recommendation_message",
+			"cart-stilyng-show",
+			"$cart-stilyng-show",
+			"recommendation_message",
+			"em",
+			"recommendation-message",
+			"nth",
+			"after",
+			"before",
+			"last-chil",
+			"first-chil",
+			"last-chil",
+			"(\\s+):",
+			":(\\s){2,}",
+			"([^&\\s]):(\\S)",
+			"(\\s)+:",
+			":(\\s){2,}",
+			"(\\S+):(\\S)",
+			"promo-block",
+			"$cart-styles",
+			"cart-styles",
+			"promo-block",
+			"3523",
+			"card",
+			"ui-widget-overlay",
+			"min-height: 209px;",
+			"nohits_page",
+			"mixin normal-paragraph-style",
+			"51a318",
+			"@mixin respond-from",
+			".ie9",
+			".noresults",
+			".my-diagnostic-results",
+			"COMPLEMENTARY",
+			"product_promo",
+			":blank",
+			"\\s{2, }",
+			":empty",
+			":blank",
+			"disableCommerce ",
+			"(\\s+): ",
+			"footer_language_box_select",
+			"footer-language-selector",
+			"type",
+			"profile",
+			"disableCommerce",
+			"lang_switcher_panel",
+			"fbico",
+			"on(",
+			"pattern",
+			"spRead",
+			"saint",
+			".brands-menu",
+			"about_us",
+			"about-us",
+			"disableCommerce",
+			"TT3ansCntr",
+			"TT3commentCntr",
+			".how_to_use_video",
+			"&lt;img",
+			"stamp-mini",
+			"stamp-min",
+			"responsiveSrc",
+			"&lt;img",
+			"responsiveSrc",
+			"<img",
+			"timeout",
+			"asse",
+			"howtouse_video",
+			"howToUseVideoPlayButton",
+			"howtouse_video",
+			"cancel",
+			"videoAutoPlayMode",
+			"initializeNavigation",
+			"howToUseVideo",
+			"videoAutoPlayMode",
+			"$par",
+			"paging_bar",
+			".hp_hero_carousel",
+			":(\\S)",
+			":(\\s{2,})",
+			"(\\s+):",
+			"(\\t+):",
+			"(\\t):",
+			"TT3error",
+			"100",
+			"content_wrap",
+			".hp_hero_carousel",
+			":",
+			"newsletter",
+			"firstname",
+			"item_image",
+			"product_image_wrapper",
+			"useSetup",
+			"TurnTo.",
+			"qPaginateInitial",
+			"TT3ShowMore",
+			"setupQuestionSubmit",
+			"tt3QuestCanc",
+			"%customerservice-secondary-assets",
+			"prima",
+			"signInPage",
+			"dev24",
+			"section_subtitle",
+			"Click here to go to the secure page for password reset",
+			".es-trending-headline",
+			"stuck",
+			"robo",
+			"validateNewsletterModal",
+			"return false",
+			"alert",
+			"js_hide",
+			"newsletter_dob_error",
+			"newsletterSubmit",
+			"submit",
+			"validateNewsletterModal",
+			"newsletterSubmitSucceedCallback",
+			"initNewsletterConfirmEvents",
+			"initializeCache",
+			"$cache.dobDay",
+			"dobDay",
+			"$cache.dobDay",
+			"\n                ",
+			"submit",
+			"valid",
+			"form"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			":",
+			"$1: $2",
+			":",
+			": ",
+			"$1: $2",
+			"",
+			": ",
+			":",
+			":\\n",
+			": ",
+			"campaignId",
+			"Colored",
+			"nose",
+			"Unusual",
+			"'",
+			"",
+			":",
+			"\"",
+			"\"\\r\\n\"",
+			"",
+			"height:90px",
+			"$plain",
+			"debates",
+			"width",
+			"saym(",
+			"$coral",
+			"$blue-light",
+			":",
+			" 0",
+			"0",
+			".addcreditcard",
+			":",
+			"",
+			"intxt",
+			"$_SERVER['DOCUMENT_ROOT'].$tmb_path.$fname",
+			"$_SERVER['DOCUMENT_ROOT'].$mid_path.$fname",
+			"$_SERVER['DOCUMENT_ROOT'].$full_path.$fname",
+			"$html",
+			"$grey-bright",
+			"#f00",
+			"$blue-light",
+			"",
+			"</",
+			"fonts",
+			"questionid",
+			"\"next\"",
+			"\"answer\"",
+			"\"quiestionid\"",
+			"\"options\"",
+			"\"text\"",
+			"\"type\"",
+			"\"",
+			"",
+			"$grey-dark",
+			"є",
+			"і",
+			"е",
+			"d",
+			"c",
+			"b",
+			"a",
+			"",
+			"grey-dark",
+			"#f00",
+			"$grey-light",
+			"$grey-dark",
+			"#fff",
+			"$grey-dark",
+			"$grey-light",
+			"#f00",
+			"",
+			"#fff",
+			"$white ",
+			"\\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 8,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "public/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1680,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								245,
+								245
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "public/lib/angular/angular.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1091891,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/src/factories.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 166,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/src/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								426,
+								426
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 252,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								252,
+								252
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "api.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1142,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								250,
+								250
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/src/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1180,
+								1180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "public/views/list.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 803,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								756,
+								756
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "public/views/new.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 649,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								649,
+								649
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<h2>New Contact</h2>",
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/berimor/Desktop/CBOOK/public/views/new.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 665,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								470,
+								88
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/C/Users/berimor/Desktop/CBOOK/public/src/controllers.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1335,
+								1079
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "data.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 798,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								255,
+								255
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "angular-contacts.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"_opc.",
+				"static\\default\\sass\\sections\\checkout\\_opc.scss"
+			],
+			[
+				"app.validator",
+				"static\\default\\js\\app.validator.customconfig.js"
+			],
+			[
+				"_navi",
+				"static\\default\\sass\\sections\\_navigation.scss"
+			],
+			[
+				"_gener",
+				"static\\default\\sass\\sections\\myaccount\\_generalstyles.scss"
+			],
+			[
+				"global.news",
+				"static\\default\\js\\components\\global.newsletter.js"
+			],
+			[
+				"_search",
+				"static\\default\\sass\\sections\\_search_engine.scss"
+			],
+			[
+				"_stat",
+				"static\\default\\sass\\sections\\transversal\\_static_pages.scss"
+			],
+			[
+				"_mixin",
+				"static\\default\\sass\\lib\\_mixins.scss"
+			],
+			[
+				"_checkout-order-summary.scss",
+				"static\\default\\sass\\sections\\checkout\\_checkout-order-summary.scss"
+			],
+			[
+				"_checkou",
+				"static\\default\\sass\\sections\\checkout\\_checkout-order-summary.scss"
+			],
+			[
+				"_genera",
+				"static\\default\\sass\\sections\\transversal\\_generalstyles.scss"
+			],
+			[
+				"_skin",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\skindiagnostic\\_skindiagnostic.scss"
+			],
+			[
+				"skinpro",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\skinprodiagnostic\\skinproresultspage.isml"
+			],
+			[
+				"ski",
+				"cartridges\\app_dermacenter\\cartridge\\scripts\\skinprodiagnostic\\SkinProDiagnostic.ds"
+			],
+			[
+				"_productt",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_product_tile.scss"
+			],
+			[
+				"_poduct",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_product_tile.scss"
+			],
+			[
+				"_footer_re",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_footer_responsive.scss"
+			],
+			[
+				"_image",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\resources\\_image.properties"
+			],
+			[
+				"skin",
+				"cartridges\\app_dermacenter\\cartridge\\scripts\\skinprodiagnostic\\SkinProDiagnostic.ds"
+			],
+			[
+				"_sty",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\settings\\_style_guide.scss"
+			],
+			[
+				"global.",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\global.navigation.js"
+			],
+			[
+				"_navigation_res",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_navigation_responsive.scss"
+			],
+			[
+				"_topsl",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\header\\_topslot.scss"
+			],
+			[
+				"app.nav",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\global.navigation.js"
+			],
+			[
+				"_special",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_special_offers.scss"
+			],
+			[
+				"_skind",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\skindiagnostic\\_skindiagnostic.scss"
+			],
+			[
+				"_heading",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_headings.scss"
+			],
+			[
+				"_staic_pages",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_static_pages.scss"
+			],
+			[
+				"_pdp_b",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp_bottomsections.scss"
+			],
+			[
+				"_pdp.",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp.scss"
+			],
+			[
+				"_pdp",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp_bottomsections.scss"
+			],
+			[
+				"_navigation.scss",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_navigation.scss"
+			],
+			[
+				"_navigation",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_navigation.scss"
+			],
+			[
+				"_product_tile",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_product_tile.scss"
+			],
+			[
+				"product.navi",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\product.navigation.js"
+			],
+			[
+				"_pdp.sc",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp.scss"
+			],
+			[
+				"_homepage",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\homepage\\_homepage.scss"
+			],
+			[
+				"shippin",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_shipping-billing.scss"
+			],
+			[
+				"_spr",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\.sass-cache\\c249493c853a0133b9bdd59ce7f5491c3d675c25\\_sprites.scssc"
+			],
+			[
+				"_base.scss",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_base.scss"
+			],
+			[
+				"skindiagnosti",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\skindiagnostic\\_skindiagnostic.scss"
+			],
+			[
+				"app.cus",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\app.customevents.js"
+			],
+			[
+				"_payment",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_payment_methods.scss"
+			],
+			[
+				"_cart",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\cart\\_cart.scss"
+			],
+			[
+				"_pdp_bo",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp_bottomsections.scss"
+			],
+			[
+				"confi",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\fonts\\fontello\\config.json"
+			],
+			[
+				"_pdp_",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp_bottomsections.scss"
+			],
+			[
+				"_filter",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\grid\\_filter_search.scss"
+			],
+			[
+				"_shipp",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_shipping-billing.scss"
+			],
+			[
+				"_conf",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_confirmation.scss"
+			],
+			[
+				"_payment.scs",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_payment.scss"
+			],
+			[
+				"_add",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_address_book.scss"
+			],
+			[
+				"app",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\app.customeventhandler.js"
+			],
+			[
+				"_pdp.scss",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pdp\\_pdp.scss"
+			],
+			[
+				"product.na",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\product.navigation.js"
+			],
+			[
+				"_min",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_minicart.scss"
+			],
+			[
+				"_cart_aba",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\cart\\_cart_abandonment.scss"
+			],
+			[
+				"app.custom",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\app.customevents.js"
+			],
+			[
+				"_contact",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_contactus.scss"
+			],
+			[
+				"static_pages",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_static_pages.scss"
+			],
+			[
+				"_wi",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_wishlist.scss"
+			],
+			[
+				"contact",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\content\\contactus.isml"
+			],
+			[
+				"wishlist",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\account\\wishlist\\wishlist.isml"
+			],
+			[
+				"pt_acc",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\account\\pt_account.isml"
+			],
+			[
+				"_heade",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_header.scss"
+			],
+			[
+				"subsc",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\components\\newsletter\\components\\subscribeconfirmationform.isml"
+			],
+			[
+				"gloa",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\global.newsletter.js"
+			],
+			[
+				"_con",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_contactus.scss"
+			],
+			[
+				"_identi",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_identification.scss"
+			],
+			[
+				"_password_recove",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_password_recovery.scss"
+			],
+			[
+				"confirmatio",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_confirmation.scss"
+			],
+			[
+				"app.storeloca",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\app.storelocator.js"
+			],
+			[
+				"_storelocator",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\storelocator\\_storelocator_results.scss"
+			],
+			[
+				"_identification",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\opc\\_identification.scss"
+			],
+			[
+				"_personal_in",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_personal_info.scss"
+			],
+			[
+				"_address",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_address_book.scss"
+			],
+			[
+				"_conta",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_contactus.scss"
+			],
+			[
+				"responsi",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\responsive.js"
+			],
+			[
+				"_styl",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\settings\\_style_guide.scss"
+			],
+			[
+				"_header",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_header.scss"
+			],
+			[
+				"_pass",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_password_recovery.scss"
+			],
+			[
+				"_password_recover",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_password_recovery.scss"
+			],
+			[
+				"_wish",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\account\\_wishlist.scss"
+			],
+			[
+				"subscribeconfirmation",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\components\\newsletter\\components\\subscribeconfirmationform.isml"
+			],
+			[
+				"app.vali",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\app.validator.customconfig.js"
+			],
+			[
+				"app.news",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\global.newsletter.js"
+			],
+			[
+				"app.cu",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\app.customevents.js"
+			],
+			[
+				"_footer",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\global\\_footer.scss"
+			],
+			[
+				"_product_til",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_product_tile.scss"
+			],
+			[
+				"_product_testing",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\producttesting\\_product_testing_landing.scss"
+			],
+			[
+				"_expert_solutio",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\pages\\_expert_solution_article.scss"
+			],
+			[
+				"producttestingaverageproductcriteria",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingaverageproductcriteria.isml"
+			],
+			[
+				"producttestingdispl",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingdisplaylatestreviews.isml"
+			],
+			[
+				"producttestingquestio",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingquestionsform.isml"
+			],
+			[
+				"producttestingaddre",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingaddressinclude.isml"
+			],
+			[
+				"app.prodc",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\app.producttesting.js"
+			],
+			[
+				"producttestingquest",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingquestionsform.isml"
+			],
+			[
+				"_butt",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\common\\_buttons.scss"
+			],
+			[
+				"producttestingadd",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingaddressinclude.isml"
+			],
+			[
+				"producttestingqu",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingquestionsform.isml"
+			],
+			[
+				"_product_test",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\producttesting\\_product_testing_form.scss"
+			],
+			[
+				"producttest",
+				"cartridges\\app_dermacenter\\cartridge\\scripts\\producttesting\\ProductTesting.ds"
+			],
+			[
+				"app.productte",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\components\\app.producttesting.js"
+			],
+			[
+				"producttesting.p",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\resources\\producttesting.properties"
+			],
+			[
+				"_product_",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\producttesting\\_product_testing_result.scss"
+			],
+			[
+				"producttestingreviewconfi",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingsubmitreviewconfirmation.isml"
+			],
+			[
+				"producttesting.d",
+				"cartridges\\app_dermacenter\\cartridge\\scripts\\producttesting\\ProductTesting.ds"
+			],
+			[
+				"producttestingfail",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingfailure.isml"
+			],
+			[
+				"producttestingsu",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingsubmitreviewconfirmation.isml"
+			],
+			[
+				"_product_tes",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\producttesting\\_product_testing_landing.scss"
+			],
+			[
+				"producttestingreview",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingreviewproduct.isml"
+			],
+			[
+				"producttestingproductdetails",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingproductdetails.isml"
+			],
+			[
+				"productgrid",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\slots\\product\\productgrid.isml"
+			],
+			[
+				"searchresul",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\search\\containers\\searchresults.isml"
+			],
+			[
+				"productg",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\slots\\product\\productgrid.isml"
+			],
+			[
+				"search",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\search\\containers\\searchresults.isml"
+			],
+			[
+				"producttestingcamp",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestingcampaignresults.isml"
+			],
+			[
+				"pt_account",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\account\\pt_account.isml"
+			],
+			[
+				"accountlogin.is",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\accountlogin\\accountlogin.isml"
+			],
+			[
+				"producttestinglan",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\producttestinglandingpage.isml"
+			],
+			[
+				"pt_pro",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\producttesting\\pt_producttesting.isml"
+			],
+			[
+				"_skin_",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\skindiagnostic\\_skindiagnostic.scss"
+			],
+			[
+				"app.wish",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\js\\app.wishlist.js"
+			],
+			[
+				"whilist",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\account\\wishlist\\containers\\wishlistproducts.isml"
+			],
+			[
+				"_fil",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\grid\\_filter_search.scss"
+			],
+			[
+				"_cart.",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\sass\\sections\\cart\\_cart.scss"
+			],
+			[
+				"cartbundles",
+				"cartridges\\app_dermacenter\\cartridge\\templates\\default\\cart\\containers\\cartbundledsublineitems.isml"
+			],
+			[
+				"sty",
+				"cartridges\\app_dermacenter\\cartridge\\static\\default\\css\\style.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 81.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 544.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 242.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}

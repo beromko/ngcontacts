@@ -4,6 +4,7 @@
 		<title>Contacts training</title>
 		<link rel="stylesheet" href='lib/bootstrap/dist/css/bootstrap.min.css' />
 		<link rel="stylesheet" href='src/bootstrap.min.css' />
+		<style>.nana{color:#f99;}</style>
 	</head>
 	<body>
 		<div class="container">
@@ -13,11 +14,35 @@
 			<div class="row">
 				<div class="col-sm-12" ng-view></div>
 			</div>
+
+			<form ng-controller="StartUpController">
+				Starting: 
+				<input ng-model="funding.startingEstimate"><br><br>
+				Ending: 
+				<input ng-model="funding.endingEstimate"><br><br>
+				<h4>Recommendation: {{funding.needed}}</h4>
+				<button ng-click = "reset()">Reset</button>
+			</form>
+
+			<hr>
+
+			<form ng-controller = "testmy">
+				<input ng-model="comeon">
+				<h1>{{comeonvalue}}</h1>
+			</form>
+
+			<ul ng-controller='students'>
+			<li ng-repeat='student in students'>
+				{{$index + 1}} <a href='/student/view/{{student.id}}'>{{student.name}}</a>
+			</li>
+			</ul>
 		</div>
+
 		<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="lib/angular/angular.min.js"></script>
 		<script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.min.js"></script>
 		<script type="text/javascript" src="lib/angular-resource/angular-resource.min.js"></script>
 		<script src="src/app.js"></script>
 		<script src="src/controllers.js"></script>

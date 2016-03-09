@@ -9,4 +9,11 @@
             </th>
         </tr>
     </thead>
+    <tbody>
+    	<tr ng-click="show(contact.id)" ng-repeat="contact in contacts | filter: query | orderBy: sort.field : sort.order">
+    		<td ng-repeat="field in fields" ng-bind-html="contact[field][0] | formatTplVal">
+    		</td>
+    	</tr>
+    </tbody>
+
 </table>
