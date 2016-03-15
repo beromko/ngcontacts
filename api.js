@@ -27,6 +27,7 @@ router
 router
 	.param("id", function(req,res,next){
 		req.dbQuery = {id: parseInt(req.params.id, 10)}
+		next();
 	})
 	.route('/contact/:id')
 		.get(function(req,res){
@@ -38,7 +39,7 @@ router
 			var contact = req.body;
 			delete contact.$promise;
 			delete contact.$resolved;
-			db.upadet(req.dbQuery, contact, function(err,data) {
+			db.update(req.dbQuery, contact, function(err,data) {
 				res.json(data[0]);
 			})
 		})

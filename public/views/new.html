@@ -1,12 +1,14 @@
 <h2>New Contact</h2>
-
-
-
-
 <form name="newContact" novalidate class='form-horizontal'>
+	<form-field record='contact' ftitle='tbltitle' field='firstName' live='false' required='true'></form-field>
+    <form-field record='contact' ftitle='tbltitle' field='lastName' live='false' required='true'></form-field>
+    <form-field ng-repeat='(k,v) in contact | keyFilter: "firstName" | keyFilter: "lastName" ' record='contact' ftitle='tbltitle' field='{{k}}'></form-field> 
+
+    <new-field record='contact' live='false'></new-field>
+
 	<div class='row form-group'>
 		<div class='col-sm-offset-2'>
-            <button class='btn btn-primary' ng-click='save()'> Create Contact </button>
+            <button class='btn btn-primary' ng-click='save()' style='margin-left: 15px;'> Create Contact </button>
         </div>
     </div>
 </form>

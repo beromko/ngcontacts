@@ -4,13 +4,17 @@ angular.module("ContactsApp", ["ngRoute","ngResource","ngSanitize"])
 			.when("/contacts", {
 				controller: "ListController",
 				templateUrl: "views/list.html"
-			}),
-			.when("/contacts/new", {
+			})
+			.when("/contact/new", {
 				controller: "NewController",
 				templateUrl: "views/new.html"
-			});
+			})
+			.when("/contact/:id", {
+				controller: "SingleController",
+				templateUrl: "views/single.html"
+			});;
 		$locationProvider.html5Mode({
 			enabled: true,
-			requireBase: false
+			requireBase: true
 		});
 	});

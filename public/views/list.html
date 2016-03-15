@@ -1,9 +1,14 @@
 <p><input type="search" class="form-control" placeholder="Search" ng-model="query" /></p>
+<div class='row form-group'>
+	
+	    <a href="/contact/new" class='btn btn-primary' style='float: right;margin-right: 15px;'> Add Record  </a>
+
+</div>
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th ng-repeat="field in fields" ng-click="sort(field)">
-                {{ field }}
+                {{ tbltitle[field] }}
                 <span ng-show="sort.field === field  && !sort.order" class="glyphicon glyphicon-chevron-down"></span>
                 <span ng-show="sort.field === field  && sort.order" class="glyphicon glyphicon-chevron-up"></span>
             </th>

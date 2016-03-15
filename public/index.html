@@ -2,40 +2,22 @@
 <html ng-app="ContactsApp">
 	<head>
 		<title>Contacts training</title>
+		<base href="/">
 		<link rel="stylesheet" href='lib/bootstrap/dist/css/bootstrap.min.css' />
 		<link rel="stylesheet" href='src/bootstrap.min.css' />
-		<style>.nana{color:#f99;}</style>
+		<style>
+			.nana{color:#f99;}
+			.table>thead:first-child>tr:first-child>th {background: #600;}
+		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="page-header">
-				<h1>Contacts</h1>
+				<h1><a href="/contacts">Contacts</a></h1>
 			</div>
 			<div class="row">
 				<div class="col-sm-12" ng-view></div>
 			</div>
-
-			<form ng-controller="StartUpController">
-				Starting: 
-				<input ng-model="funding.startingEstimate"><br><br>
-				Ending: 
-				<input ng-model="funding.endingEstimate"><br><br>
-				<h4>Recommendation: {{funding.needed}}</h4>
-				<button ng-click = "reset()">Reset</button>
-			</form>
-
-			<hr>
-
-			<form ng-controller = "testmy">
-				<input ng-model="comeon">
-				<h1>{{comeonvalue}}</h1>
-			</form>
-
-			<ul ng-controller='students'>
-			<li ng-repeat='student in students'>
-				{{$index + 1}} <a href='/student/view/{{student.id}}'>{{student.name}}</a>
-			</li>
-			</ul>
 		</div>
 
 		<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
@@ -44,8 +26,10 @@
 		<script type="text/javascript" src="lib/angular-route/angular-route.min.js"></script>
 		<script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.min.js"></script>
 		<script type="text/javascript" src="lib/angular-resource/angular-resource.min.js"></script>
+		<script type="text/javascript" src="lib/angular-messages/angular-messages.min.js"></script>
 		<script src="src/app.js"></script>
 		<script src="src/controllers.js"></script>
 		<script src="src/factories.js"></script>
+		<script src='src/directives.js'></script>
 	</body>
 </html>
